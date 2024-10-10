@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fun Typing Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            
+            
+            background-color: #74EBD5;
+            background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-weight: bold;
+            color: #5A5A5A;
+        }
+
+        .table td {
+            border: none;
+        }
+
+        .table input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-fun {
+            background-color: #ff4b2b;
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 18px;
+            transition: 0.4s;
+        }
+
+        .btn-fun:hover {
+            background-color: #ff6f61;
+        }
+
+        #ap {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        #ak {
+            background-color: #e8f0fe;
+            color: #333;
+        }
+    </style>
+    <script type="text/javascript">
+        var str = "";
+
+        // Function to set text based on selected difficulty level
+        function myfunc() {
+            var p1 = document.getElementById('a').checked;
+            var p2 = document.getElementById('b').checked;
+            var p3 = document.getElementById('c').checked;
+
+            if (p1) {
+                str = "An array is a collection of items of the same variable type that are stored.";
+            } else if (p2) {
+                str = "An array is a collection of items of the same variable type that are stored at contiguous memory locations. It’s one of the most popular.";
+            } else {
+                str = "An array is a collection of items of the same variable type that are stored at contiguous memory locations. It’s one of the most popular and simple data structures and is often used to implement.";
+            }
+
+            document.getElementById('ap').value = str; // Set the text area to the selected string
+        }
+
+        // Function to calculate matching words and percentage             
+        function blurfunc() {
+            var count = 0;
+            var ipval = document.getElementById('ak').value; // Get the input value
+            var nwval = ipval.split(" "); // Split input into words
+
+            if (ipval.length === 0) {
+                alert("Invalid option... enter something");
+                return false;
+            }
+
+            // Count matching words
+            for (var i = 0; i < nwval.length; i++) {
+                if (str.includes(nwval[i])) {
+                    count++;
+                }
+            }
+
+            // Calculate percentage of matched words
+            var per = (count / str.split(" ").length) * 100;
+            alert("Count: " + count);
+            alert("Memory Percentage: " + per.toFixed(2) + "%"); // Display percentage with two decimal points
+        }
+
+        // Clear text area when typing starts
+        function keyfunc() {
+            document.getElementById('ap').value = ""; // Clear the reference text area
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Simple Typing Application</h2>
+        <center>
+            <table class="table">
+                <tr>
+                    <td><strong>Select Difficulty Level:</strong></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="a1" value="simple" id="a" onClick="myfunc()"> Simple</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="a1" value="avg" id="b" onClick="myfunc()"> Average</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="a1" value="difficult" id="c" onClick="myfunc()"> Difficult</td>
+                </tr>
+            </table>
+
+            <form>
+                <table class="table">
+                    <tr>
+                        <td><input type="text" name="box" class="form-control" id="ap" readonly style="height: 100px;" placeholder="Selected text will appear here"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="box1" class="form-control" id="ak" onkeypress="keyfunc()" onblur="blurfunc()" style="height: 200px;" placeholder="Type here..."></td>
+                    </tr>
+                    
+                </table>
+            </form>
+        </center>
+        <p id="ans"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
